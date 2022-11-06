@@ -1,19 +1,21 @@
 /*Toda vez que for executada esta função, sera criado um card novo*/
 
-function createGame (player, hour, player2){
+
+function createGame (player1, hour, player2){
     return `
     <li>
-        <img src="./assets/${player}.svg" alt="brasil">
-        <strong>16:00</strong>
-        <img src="./assets/southAfrica.svg" alt="">
+        <img src="./assets/${player1}.svg" alt="${player1}">
+        <strong>${hour}</strong>
+        <img src="./assets/${player2}.svg" alt="${player2}">
     </li>
     `
 }
 
+let delay = -0.3;
 function createCard(date,day, games){  	
+    delay = delay + 0.3;
     return `
-
-    <div class="card">
+    <div class="card" style="animation-delay: ${delay}s";>
             <h2>${date} <span>${day}</span></h2>
             <ul>
                ${games}
@@ -22,15 +24,8 @@ function createCard(date,day, games){
     `
 }
 
-document.querySelector('.app').innerHTML = `
-    <header>
-        <img src="./assets/logo.svg" alt=" Logo da NLW">
-    </header>
-    <main id="cards">
-        ${createCard('24/11', "quinta",  createGame())} 
-        ${createCard('28/11', "quinta",  createGame())} 
-        ${createCard('02/12', "quinta",  createGame())} 
-    </main>
-`
-
-/* ${createCard()} => criar uma interpolação */
+document.querySelector('#cards').innerHTML = 
+    createCard('24/11', "quinta", 
+    createGame("mozambique","16:00","southAfrica") + createGame("cameroon","16:00","ghana"))
+    createCard('28/11', "quinta", + createGame("mozambique","16:00","southAfrica"))
+    
